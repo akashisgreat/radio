@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📻</text></svg>">
+    <title>Live Radio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <section class="player">
+            <span class="freq">90.3 Mhz</span>
+            <span class="name">Radio FM</span>
+            <video style="display: none;" id="url"></video>
+
+            <input type="checkbox" id="play-pause-checkbox" style="display: none;">
+            <label for="play-pause-checkbox" id="play-pause-label"></label>
+
+            <span id="status"></span>
+
+        </section>
+    </header>
+    <main>
+        <ol class="list">
+            <li class="item">
+                <span class="freq">91.1 Mhz</span>
+                <span class="name">Radio City</span>
+                <span class="url" url="https://prclive1.listenon.in/"></span>
+            </li>
+            <li class="item">
+                <span class="freq">95.0 Mhz</span>
+                <span class="name">Big FM</span>
+                <span class="url"
+                    url="https://playerservices.streamtheworld.com/api/livestream-redirect/PAT_HIN_ESTAAC.m3u8"></span>
+            </li>
+            <li class="item">
+                <span class="freq">101.6 Mhz</span>
+                <span class="name">AkashVani</span>
+                <span class="url"
+                    url="https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio002/hlspbaudio002_Auto.m3u8"></span>
+            </li>
+            <li class="item">
+                <span class="freq">102.5 Mhz</span>
+                <span class="name">Vividh Bharti</span>
+                <span class="url" url="https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8"></span>
+            </li>
+        </ol>
+    </main>
+</body>
+
+<script>
+    const list = document.querySelector(".list")
+    const items = document.querySelectorAll(".item")
+    const player_freq = document.querySelector('.player  .freq')
+    const player_name = document.querySelector('.player  .name')
+    const player_url = document.querySelector('.player  #url')
+
+
+    items.forEach(item => {
+        item.addEventListener('click', function () {
+            freq = this.querySelector('.freq').innerHTML
+            name = this.querySelector('.name').innerHTML
+            url = this.querySelector('.url').getAttribute('url')
+
+            player_freq.innerHTML = freq
+            player_name.innerHTML = name
+            player_url.src = url
+            player_url.play()
+        })
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var video = document.getElementById('url');
+        var checkbox = document.getElementById('play-pause-checkbox');
+        var statusElement = document.getElementById('status');
+
+        checkbox.addEventListener('change', function () {
+            if (checkbox.checked) {
+                video.play();
+            } else {
+                video.pause();
+            }
+
+            if (checkbox.checked) {
+                // Perform actions when play button is clicked
+                statusElement.textContent = 'Status: Playing';
+            } else {
+                // Perform actions when pause button is clicked
+                statusElement.textContent = 'Status: Paused';
+            }
+        });
+
+        video.addEventListener('play', function () {
+            checkbox.checked = true;
+        });
+
+        video.addEventListener('pause', function () {
+            checkbox.checked = false;
+        });
+    });
+
+
+
+</script>
+
+</html>
