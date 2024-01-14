@@ -125,13 +125,16 @@
     var alertstate = false
     function showalert(msg, color) {
         if (alertstate) {
-            alert.innerHTML = `<span class="closebtn" onclick="this.parentElement.remove();alertstate = false">&times;</span>${msg}`
+            // alert.innerHTML = `<span class="closebtn" onclick="this.parentElement.remove();alertstate = false">&times;</span>${msg}`
+            console.log('');
         } else {
             alert = document.createElement('div')
             color = color || 'red'
             alert.classList.add('alert')
-            alert.style = `background-color: ${color}`
-            alert.innerHTML = `<span class="closebtn" onclick="this.parentElement.remove();alertstate = false">&times;</span>${msg}`
+            alert.style = `position: absolute;top: 4em;left: 50%;transform: translate(-50%, -50%);margin: .2em;padding: 10px 15px;border-radius: 10px;color: white;z-index: 20;background-color: ${color}`
+            alert.innerHTML = `<span class="closebtn" 
+            style="margin-left: 15px;color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;" 
+            onclick="this.parentElement.remove();alertstate = false">&times;</span>${msg}`
             alertstate = true
             setTimeout(() => {
                 alert.remove()
