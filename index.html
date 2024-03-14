@@ -61,10 +61,6 @@
             </label>
         </section>
     </header>
-
-
-
-
     <main>
         <div class="container">
             <label>
@@ -79,11 +75,26 @@
                 <span class="name">Vividh Bharti Patna</span>
                 <url data-url="https://air.pc.cdn.bitgravity.com/air/live/pbaudio251/chunklist.m3u8">
             </label>
+            <label class="news">
+                <input type="radio" name="station">
+                <span class="freq">Akashvani Patna</span>
+                <span id="akashvani_patna_date" class="name"></span>
+                <url id="akashvani_patna_url" data-url="">
+                    <script>
+                        const currentDate = new Date();
+                        month = currentDate.getMonth() + 1;
+                        month = month < 10 ? '0' + month : month;
+                        year = currentDate.getFullYear()
+                        akashvani_patna_date.textContent = new Date().toLocaleDateString('en-GB');
+                        akashvani_patna_url.setAttribute('data-url', `https://newsonair.gov.in/wp-content/uploads/${year}/${month}/Patna.mp3`);
+                    </script>
+            </label>
             <label class="song">
                 <input type="radio" name="station">
                 <span class="freq">New Songs</span>
                 <span class="name">New Bollywood Songs</span>
-                <url data-url="https://stream-141.zeno.fm/rqqps6cbe3quv?zs=6k4kfGQRQA6poc6xbmaNjA&rj-ttl=5&rj-tok=AAABccQyYG8AGJ3KW_903AafBw">
+                <url
+                    data-url="https://stream-141.zeno.fm/rqqps6cbe3quv?zs=6k4kfGQRQA6poc6xbmaNjA&rj-ttl=5&rj-tok=AAABccQyYG8AGJ3KW_903AafBw">
             </label>
             <label class="song">
                 <input type="radio" name="station">
@@ -102,13 +113,6 @@
                 <span class="freq">Kishore</span>
                 <span class="name">Kishore Kumar songs</span>
                 <url data-url="https://stream-156.zeno.fm/s9c3zek68a0uv?zs=2n3_bd2iRrmIN5-HuvzoXA">
-            </label>
-            <!--  -->
-            <label>
-                <input type="radio" name="station">
-                <span class="freq">98.3 Mhz</span>
-                <span class="name">Radio Mirchi</span>
-                <url data-url="https://playerservices.streamtheworld.com/api/livestream-redirect/PAT_HIN_ESTAAC.m3u8">
             </label>
         </div>
     </main>
@@ -176,7 +180,7 @@
             play_pause_btn.checked = false;
             loading.style.display = 'block'
             status.style.display = 'none'
-            console.log("loading...");
+            // console.log("loading...");
         })
 
         player_engine.addEventListener('loadeddata', () => {
@@ -185,7 +189,7 @@
             if (!player_engine.paused) {
                 play_pause_btn.checked = true;
                 status.style.display = 'block'
-                console.log("playing");
+                // console.log("playing");
             }
         });
 
@@ -205,7 +209,7 @@
             // loading.innerHTML = " [!]"
             status.style.display = 'none'
             loading.style.display = 'none'
-            showalert("error video");
+            // showalert("error video");
         });
 
         play_pause_btn.addEventListener('change', function () {
